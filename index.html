@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI音乐人 midi.cn 音乐制作导航</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- 左侧边栏 -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">◈</div>
+                <div class="brand-text">
+                    <h1>MIDI音乐人</h1>
+                    <span>数字音乐制作工作台</span>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="搜索工具、标签...">
+                <kbd>Ctrl K</kbd>
+            </div>
+
+            <nav class="sidebar-nav">
+                <!-- 核心工作流 - 所有设备显示 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">🎵 核心工作</div>
+                    <button class="nav-item active" data-view="home">
+                        <span>🏠</span> 首页
+                    </button>
+                    <button class="nav-item" data-view="categories">
+                        <span>📂</span> 全部工具
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('录音')">
+                        <span>🎙️</span> 录音
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('编曲')">
+                        <span>🎼</span> 编曲
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('混音')">
+                        <span>🎚️</span> 混音
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('母带')">
+                        <span>✨</span> 母带
+                    </button>
+                </div>
+
+                <!-- 按制作类型 - 移动端隐藏 -->
+                <div class="nav-section mobile-hidden">
+                    <div class="nav-section-title">🎯 制作类型</div>
+                    <button class="nav-item" onclick="filterByTag('电子')">
+                        <span>⚡</span> 电子/EDM
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('Hip-hop')">
+                        <span>🎤</span> Hip-hop/Beat
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('电影')">
+                        <span>🎬</span> 影视配乐
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('管弦乐')">
+                        <span>🎻</span> 管弦/古典
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('流行')">
+                        <span>🎸</span> 流行/摇滚
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('游戏')">
+                        <span>🎮</span> 游戏音频
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('播客')">
+                        <span>🎙️</span> 播客/语音
+                    </button>
+                </div>
+
+                <!-- 按平台 - 移动端隐藏 -->
+                <div class="nav-section mobile-hidden">
+                    <div class="nav-section-title">💻 工作平台</div>
+                    <button class="nav-item" onclick="filterByPlatform('Mac')">
+                        <span>🍎</span> macOS
+                    </button>
+                    <button class="nav-item" onclick="filterByPlatform('Windows')">
+                        <span>🪟</span> Windows
+                    </button>
+                    <button class="nav-item" onclick="filterByPlatform('iOS')">
+                        <span>📱</span> iOS移动
+                    </button>
+                    <button class="nav-item" onclick="filterByPlatform('在线')">
+                        <span>☁️</span> 在线工具
+                    </button>
+                    <button class="nav-item" onclick="filterByPlatform('跨平台')">
+                        <span>🌐</span> 跨平台
+                    </button>
+                </div>
+
+                <!-- 按预算 - 移动端隐藏 -->
+                <div class="nav-section mobile-hidden">
+                    <div class="nav-section-title">💰 预算选择</div>
+                    <button class="nav-item" onclick="filterByPrice('免费')">
+                        <span>🎁</span> 完全免费
+                    </button>
+                    <button class="nav-item" onclick="filterByPrice('免费版')">
+                        <span>🆓</span> 免费版/内购
+                    </button>
+                    <button class="nav-item" onclick="filterByPrice('开源')">
+                        <span>🔓</span> 开源工具
+                    </button>
+                    <button class="nav-item" onclick="filterByPrice('付费')">
+                        <span>💎</span> 付费软件
+                    </button>
+                </div>
+
+                <!-- 专业工具 - 移动端隐藏 -->
+                <div class="nav-section mobile-hidden">
+                    <div class="nav-section-title">🛠️ 专业工具</div>
+                    <button class="nav-item" onclick="filterByTag('AI')">
+                        <span>🤖</span> AI音乐工具
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('必装')">
+                        <span>💯</span> 必装神器
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('推荐')">
+                        <span>👍</span> 站长推荐
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('硬件')">
+                        <span>🔌</span> 硬件设备
+                    </button>
+                </div>
+
+                <!-- 辅助工具 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">📚 辅助资源</div>
+                    <button class="nav-item" data-view="workflows">
+                        <span>🔄</span> 工作流程
+                    </button>
+                    <button class="nav-item" data-view="tags">
+                        <span>🏷️</span> 标签云
+                    </button>
+                    <button class="nav-item" onclick="filterByTag('教程')">
+                        <span>📖</span> 学习教程
+                    </button>
+                </div>
+            </nav>
+
+        </aside>
+
+        <!-- 右侧主内容 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="breadcrumb" id="pageTitle">首页</div>
+                <div class="top-stats" id="statsText">加载中...</div>
+            </header>
+
+            <div id="contentArea" class="content-area"></div>
+            
+            <footer class="main-footer">
+                <p>© 2003-2026 MIDI音乐人 midi.cn 音乐制作导航</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="data.js?v=3"></script>
+    <script defer src="app.js?v=3"></script>
+</body>
+</html>
